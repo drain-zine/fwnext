@@ -1,0 +1,30 @@
+//@import "../../styles/variables.scss";
+// colors
+$white: #FFFFFF;
+
+// fonts
+$headingFont: Helvetica;
+
+// font sizes
+$baseFontSize: 16px;
+
+.page{
+    // background-image: url("./assets/busyDesktop.jpg");
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100vh;
+    width: 100vw;
+    background: url("./assets/busyDesktop.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
