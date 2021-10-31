@@ -24,23 +24,42 @@ $fontSize: 32px;
     
     .content{
         width: $width * ($gridUnit - $leftSideBarScale - 1) / 10;
-        background-color: blue;
+        position: relative;
+
+        h1{
+            font-size: $fontSize * 4;
+        }
+
+        a{
+            text-decoration: none;
+        }
     }
 
     .leftSideBar{
         width: $leftSideBarScale*$width / 10;
-        background-color: red;
         display: flex;
     }
 
     .rightSideBar{
         width: $width / 10;
-        background-color: red; 
     }
-
-    .vertical{
+    
+    .verticalL{
         writing-mode: vertical-rl;
         text-orientation: mixed;
+        transform: rotate(180deg);
+    }
+
+    .verticalR{
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        //transform: rotate(-180deg);
+        transform: scale(-1, -1);
+        transform: rotate(180deg);
+    }
+
+    .bar{
+        width: $width / 10;
         display: flex;
         justify-content: space-between;
         height: 100%;
@@ -76,8 +95,6 @@ $fontSize: 32px;
                 margin: 0;
             }
         }
- 
-        transform: rotate(180deg);
     }
 
 }
@@ -89,4 +106,27 @@ $fontSize: 32px;
     padding: 0;
     background-image: url("assets/safariBanner.png");
     background-size: cover;
+}
+
+.verticalText{
+    font-size: $fontSize / 3;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-align: center !important;
+    height: 100% !important;
+}
+
+.underline{
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.temp1{
+    position: absolute;
+    width: 100%;
+    
+}
+
+.temp2{
+    position: absolute;
 }
