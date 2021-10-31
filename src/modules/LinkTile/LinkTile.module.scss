@@ -1,5 +1,92 @@
+@use "sass:math";
+
+$ar: math.div(16,9);
+$width: 1000px;
+$headerHeight: 60px;
+$gridUnit: 10;
+$leftSideBarScale: 2;
+$fontSize: 32px;
+
+.tile{
+    display: flex;
+    flex-direction: column;
+}
+
 .tileBody{
-    width: 300px;
-    height: 500px;
+    width: $width;
+    height: math.div($width,$ar);
     background-color: black;
+    display: flex;
+    font-size: $fontSize;
+    font-family: Helvetica;
+    color: white;
+
+    
+    .content{
+        width: $width * ($gridUnit - $leftSideBarScale - 1) / 10;
+        background-color: blue;
+    }
+
+    .leftSideBar{
+        width: $leftSideBarScale*$width / 10;
+        background-color: red;
+        display: flex;
+    }
+
+    .rightSideBar{
+        width: $width / 10;
+        background-color: red; 
+    }
+
+    .vertical{
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+
+        p, div{
+            height: 33%;
+            margin: 0px;
+        }
+
+        .excludeAlign{
+           
+        }
+
+        *:not(:first-child):not(:last-child):not(.excludeAlign){
+            text-align: center;
+        }
+
+        p:first-child:not(.excludeAlign), div:first-child{
+            text-align: left;
+        }
+
+        p:last-child:not(.excludeAlign), div:last-child{ 
+            text-align: right;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            font-size: $fontSize / 2;
+
+            *{
+                height: 75%;
+                margin: 0;
+            }
+        }
+ 
+        transform: rotate(180deg);
+    }
+
+}
+
+.tileHeader{
+    width: $width;
+    height: $headerHeight;
+    margin: 0;
+    padding: 0;
+    background-image: url("assets/safariBanner.png");
+    background-size: cover;
 }

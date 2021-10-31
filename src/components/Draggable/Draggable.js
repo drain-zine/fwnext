@@ -1,5 +1,6 @@
 import React from "react"
 import useInteractDrag from "../../hooks/useInteractDrag";
+import styles from './Draggable.module.scss'
 
 const Draggable = (props) => {
     const targetClass = "draggableTile";
