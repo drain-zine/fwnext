@@ -6,6 +6,7 @@ $headerHeight: 60px;
 $gridUnit: 10;
 $leftSideBarScale: 2;
 $fontSize: 32px;
+$height: math.div($width,$ar);
 
 .tile{
     display: flex;
@@ -14,12 +15,14 @@ $fontSize: 32px;
 
 .tileBody{
     width: $width;
-    height: math.div($width,$ar);
+    height: $height;
     background-color: black;
     display: flex;
     font-size: $fontSize;
     font-family: Helvetica;
     color: white;
+    padding-top: 1px;
+    padding-bottom: 1px;
 
     
     .content{
@@ -106,6 +109,7 @@ $fontSize: 32px;
     padding: 0;
     background-image: url("assets/safariBanner.png");
     background-size: cover;
+    cursor: pointer;
 }
 
 .verticalText{
@@ -124,9 +128,47 @@ $fontSize: 32px;
 .temp1{
     position: absolute;
     width: 100%;
+
+    a:hover{
+        color: purple;
+    }
     
 }
 
 .temp2{
     position: absolute;
+    width: 40%;
+    left: 50%;
+    font-size: 20px;
 }
+
+.imageOverlay{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 100%;
+
+    h2{
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+}
+
+.subHeading{
+    font-size: $fontSize / 6;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 0%);    
+}
+
+.bgWrap{
+    z-index: 0;
+    width: $width;
+    height: $height;
+    overflow: hidden;
+    position: absolute;
+    top: $headerHeight;
+
+}
+

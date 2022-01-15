@@ -34,11 +34,11 @@ const LinkTile = () => {
                     </section>
 
                     <section className={styles.content}>
-                        <h1 className={styles.temp1}>Drain Magazine <Link href="/">Edition 000</Link></h1>
+                        <h1 className={styles.temp1}>Drain Magazine <Link href="/drain00">Edition 000</Link></h1>
                         <p className={styles.temp2}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia, dolor et commodo fermentum, nibh tortor pellentesque enim, et rutrum eros sem vel enim. Fusce dictum lorem sem, ac efficitur purus faucibus et. Nunc laoreet nisi non volutpat accumsan. Nullam tempor turpis et ultrices varius. Sed ac finibus metus, et consequat risus. Proin sollicitudin vehicula tellus id ullamcorper. Nunc in urna in arcu pulvinar facilisis quis eget sem.</p>
                     </section>
 
-                    <section className={styles.rightSideBar}>
+                    <section className={classnames(styles.rightSideBar, styles.verticalR)}>
                        <div className={classnames(styles.bar,styles.verticalR)}>
                        <p>1.00</p>
                             <p>Drain</p>

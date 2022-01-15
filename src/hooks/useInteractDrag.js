@@ -9,6 +9,7 @@ const useInteractDrag = (targetClass = 'draggable') => {
     // target elements with the "draggable" class
         interact(`.${targetClass}`)
         .draggable({
+            stack: "div",
             // enable inertial throwing
             inertia: true,
             // keep the element within the area of it's parent
@@ -42,6 +43,7 @@ const useInteractDrag = (targetClass = 'draggable') => {
             // update the posiion attributes
             target.setAttribute('data-x', x)
             target.setAttribute('data-y', y)
+            target.style.zIndex = parseInt(new Date().getTime() / 1000);
         }
 
         // this function is used later in the resizing and gesture demos
