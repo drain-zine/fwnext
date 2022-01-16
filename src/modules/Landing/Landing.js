@@ -19,7 +19,7 @@ const Landing = () => {
             height={750}
           />
         </div>
-        <WebampCS />
+        {/* <WebampCS /> */}
     </main>
   );
 };

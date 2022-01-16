@@ -1,3 +1,12 @@
+import { wrapper } from '../store/store';
 import '../styles/globals.scss';
 
-export { default } from 'next/app';
+const App = ({Component, pageProps, router}) => {
+
+
+    return(
+        <Component router={router} {...pageProps} />
+  );
+}
+
+export default wrapper.withRedux(App);
