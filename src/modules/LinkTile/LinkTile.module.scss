@@ -1,0 +1,174 @@
+@use "sass:math";
+
+$ar: math.div(16,9);
+$width: 1000px;
+$headerHeight: 60px;
+$gridUnit: 10;
+$leftSideBarScale: 2;
+$fontSize: 32px;
+$height: math.div($width,$ar);
+
+.tile{
+    display: flex;
+    flex-direction: column;
+}
+
+.tileBody{
+    width: $width;
+    height: $height;
+    background-color: black;
+    display: flex;
+    font-size: $fontSize;
+    font-family: Helvetica;
+    color: white;
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    
+    .content{
+        width: $width * ($gridUnit - $leftSideBarScale - 1) / 10;
+        position: relative;
+
+        h1{
+            font-size: $fontSize * 4;
+        }
+
+        a{
+            text-decoration: none;
+        }
+    }
+
+    .leftSideBar{
+        width: $leftSideBarScale*$width / 10;
+        display: flex;
+    }
+
+    .rightSideBar{
+        width: $width / 10;
+    }
+    
+    .verticalL{
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+    }
+
+    .verticalR{
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        //transform: rotate(-180deg);
+        transform: scale(-1, -1);
+        transform: rotate(180deg);
+    }
+
+    .bar{
+        width: $width / 10;
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+
+        p, div{
+            height: 33%;
+            margin: 0px;
+        }
+
+        .excludeAlign{
+           
+        }
+
+        *:not(:first-child):not(:last-child):not(.excludeAlign){
+            text-align: center;
+        }
+
+        p:first-child:not(.excludeAlign), div:first-child{
+            text-align: left;
+        }
+
+        p:last-child:not(.excludeAlign), div:last-child{ 
+            text-align: right;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            font-size: $fontSize / 2;
+
+            *{
+                height: 75%;
+                margin: 0;
+            }
+        }
+    }
+
+}
+
+.tileHeader{
+    width: $width;
+    height: $headerHeight;
+    margin: 0;
+    padding: 0;
+    background-image: url("assets/safariBanner.png");
+    background-size: cover;
+    cursor: pointer;
+}
+
+.verticalText{
+    font-size: $fontSize / 3;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-align: center !important;
+    height: 100% !important;
+}
+
+.underline{
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.temp1{
+    position: absolute;
+    width: 100%;
+
+    a:hover{
+        color: purple;
+    }
+    
+}
+
+.temp2{
+    position: absolute;
+    width: 40%;
+    left: 50%;
+    font-size: 20px;
+}
+
+.imageOverlay{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 100%;
+
+    h2{
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+}
+
+.subHeading{
+    font-size: $fontSize / 6;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 0%);    
+}
+
+.bgWrap{
+    z-index: 0;
+    width: $width;
+    height: $height;
+    overflow: hidden;
+    position: absolute;
+    top: $headerHeight;
+
+}
+

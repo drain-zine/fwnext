@@ -30,6 +30,10 @@ const WebampWrapper = () => {
 
     
         webamp.renderWhenReady(webampRef.current);
+
+        return () => {
+            webamp.dispose();
+        };
     },[webampRef]);
 
     return(
