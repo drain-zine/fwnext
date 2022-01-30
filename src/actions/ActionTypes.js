@@ -1,2 +1,8 @@
+// CMS ACTIONS
+export const FETCH_CMS_ENDPOINTS = "FETCH_CMS_ENDPOINTS";
+export const RECEIVE_CMS_ENDPOINTS = "RECEIVE_CMS_ENDPOINTS";
 export const FETCH_CMS = "FETCH_CMS";
 export const RECEIVE_CMS = "RECEIVE_CMS";
+export const PARSE_CMS = "PARSE_CMS";
+export const SET_CMS_STATUS = "SET_CMS_STATUS";
+export const SET_CMS_ERROR = "SET_CMS_ERROR";

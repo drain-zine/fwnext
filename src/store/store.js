@@ -2,7 +2,8 @@ import { createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 import { createWrapper } from "next-redux-wrapper"
 import rootReducer from "../reducers/root"
-import { fetchCMS } from "../middlewares/fetchCMS"
+import { fetchCMSMiddlewares } from "../middlewares/fetchCMS"
+import { parseCMS } from "../middlewares/parseCMS/parseCMS"
 
 const middleware = [thunk]
 
@@ -11,7 +12,9 @@ const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(fetchCMS));
+const middlewares = [...fetchCMSMiddlewares, parseCMS]
+
+const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
 const makeStore = () => createStore(rootReducer, enhancer)
 
