@@ -23,7 +23,12 @@ const cms = (state = {cms: {"test":"hello"}}, action) => {
     case t.PARSE_CMS:
       return { 
         ...state,
-      };    
+      };
+    case t.RECEIVE_PARSED_CMS:
+      return {
+        ...state,
+        parsedCMS: action.parsedCMS
+      }      
     case t.SET_CMS_STATUS:
       return { 
         ...state,

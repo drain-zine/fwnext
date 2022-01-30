@@ -1,11 +1,11 @@
 import React from "react";
 import Button from "../../modules/blog/cmsComponents/Button";
-import Gallery from "../../modules/blog/cmsComponentsGallery";
-import QuoteBox from "../../modules/blog/cmsComponentsQuoteBox";
-import TextBox from "../../modules/blog/cmsComponentsTextBox";
-import Title from "../../modules/blog/cmsComponentsTitle";
-import TextColumns from "../../modules/blog/cmsComponentsTextColumns";
-import Column from "../../modules/blog/cmsComponentsColumn";
+//import Gallery from "../../modules/blog/cmsComponents/Gallery";
+import QuoteBox from "../../modules/blog/cmsComponents/QuoteBox";
+import TextBox from "../../modules/blog/cmsComponents/TextBox";
+import Title from "../../modules/blog/cmsComponents/Title";
+import TextColumns from "../../modules/blog/cmsComponents/TextColumns";
+import Column from "../../modules/blog/cmsComponents/Column";
 import FadeInDiv from "../../components/Animated/FadeInDiv";
 
 
@@ -13,7 +13,7 @@ const manifest = {
     title: Title,
     textbox: TextBox,
     button: Button,
-    gallery: Gallery,
+    //gallery: Gallery,
     quotebox: QuoteBox,
     textcol: TextColumns,
     col: Column,

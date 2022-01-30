@@ -32,6 +32,13 @@ export const parseCMS = () => {
   });
 }
 
+export const receiveParsedCMS = (parsedCMS) => {
+  return ({
+    type: t.RECEIVE_PARSED_CMS,
+    parsedCMS
+  })
+}
+
 export const setCMSStatus = (status) => {
   return({
     type: t.SET_CMS_STATUS,
