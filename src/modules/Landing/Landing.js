@@ -8,6 +8,7 @@ import LinkTileImage from '../LinkTile/LinkTileImage';
 const WebampCS = dynamic(()=> import("../../components/WebampWrapper/WebampWrapper"), { ssr: false });
   
 const Landing = () => {
+
   return (
     <main className={styles.page}>
         <LinkTile />
@@ -19,7 +20,7 @@ const Landing = () => {
             height={750}
           />
         </div>
-        <WebampCS />
+        {/* <WebampCS /> */}
     </main>
   );
 };

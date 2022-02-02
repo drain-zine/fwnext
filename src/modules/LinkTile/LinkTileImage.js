@@ -11,6 +11,8 @@ const Draggable = dynamic(()=> import("../../components/Draggable/Draggable"), {
   
 
 const LinkTileImage = () => {
+    const route = "digital-active-consciousness";
+
 
     return(
         <Draggable>
@@ -35,9 +37,9 @@ const LinkTileImage = () => {
 
                     <section className={styles.content}>
                         <div className={styles.imageOverlay}>
-                            <h2 style={{marginLeft: "0%"}}className={styles.imageHeading}>Digital</h2>
-                            <h2 style={{marginLeft: "20%"}} className={styles.imageHeading}>Active</h2>
-                            <h2  style={{marginLeft: "40%"}}className={styles.imageHeading}>Conciousness</h2>
+                            <h2 style={{marginLeft: "0%"}}className={styles.imageHeading}><Link href={route}>Digital</Link></h2>
+                            <h2 style={{marginLeft: "20%"}} className={styles.imageHeading}><Link href={route}>Active</Link></h2>
+                            <h2  style={{marginLeft: "40%"}}className={styles.imageHeading}><Link href={route}>Conciousness</Link></h2>
                         </div>
                         <p className={styles.subHeading}>Fountain Works 002</p>
                     </section>

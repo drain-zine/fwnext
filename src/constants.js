@@ -1,0 +1,19 @@
+export const ENDPOINTS = {
+    FETCH_CMS: '/cms',
+    CMS_LIST: '/cms/list'
+}
+
+export const CMS_STATUS = {
+    CMS_FETCH_ENDPOINTS: 'CMS_FETCH_ENDPOINTS',
+    CMS_LOADING: 'CMS_LOADING',
+    CMS_READY_TO_FETCH: 'CMS_READY_TO_FETCH',
+    CMS_LOADED: 'CMS_LOADED',
+    CMS_ERRORED: 'CMS_ERRORED',
+    CMS_PARSING: 'CMS_PARSING',
+    CMS_PARSED: 'CMS_PARSED'
+}
+
+export const LANDING = {
+    RAND_X: 60,
+    RAND_Y: 30
+}

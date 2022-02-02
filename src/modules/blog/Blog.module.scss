@@ -1,0 +1,220 @@
+// BLOG
+
+$baseFontSize: 1rem;
+$paddingSize: 2rem;
+$marginSize: 1rem;
+$commentSize: 14rem;
+
+.blog{
+    font-size: $baseFontSize;
+    display: flex; 
+    position: relative; 
+    display: flex; 
+    flex-direction: column; 
+    user-select: none; 
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    header{
+        display: flex; 
+        margin-top: $marginSize;
+        margin-bottom: $marginSize; 
+        display: flex; 
+        flex: 0 1 auto; 
+        justify-content: center; 
+        width: 100%; 
+        border-top-width: 2px; 
+        border-bottom-width: 2px; 
+        border-color: #ffffff;
+        
+        h1 {
+            padding-top: $paddingSize;
+            padding-bottom: $paddingSize; 
+            font-size: 3 * $baseFontSize;
+            line-height: 1; 
+            text-align: center; 
+            flex: 1 1 0%; 
+        }
+    }
+
+    .contentWrapper{
+        width: 100%;
+        display: flex;
+        position: relative;
+    }
+    .cmsWrapper{
+        padding-left: $commentSize;
+        padding-right: 1rem; 
+        margin-bottom: 24rem; 
+        flex-grow: 1; 
+        width: 100%; 
+        width: 60%;
+    }
+
+    .comments{
+        width: 7 * $paddingSize;
+        color: white;
+        border-left: 2px solid;
+        border-top: 2px solid;
+        margin-top: $marginSize;
+
+        h2{
+            text-align: center;
+        }
+    }
+}
+
+.post{
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+}
+
+// COMPONENTS
+.button{
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    padding-top: $paddingSize;
+    padding-bottom: $paddingSize; 
+    margin-top: 2rem; 
+    text-align: center; 
+    width: 100%; 
+    border-top-width: 2px; 
+    border-bottom-width: 2px; 
+    border-color: #ffffff;
+
+    .title{
+        font-size: 2 * $baseFontSize;
+        line-height: 1; 
+
+        span{
+            color: #7F1D1D; 
+        }
+    }
+
+    .subTitle{
+        margin-top: 1rem; 
+        color: #7F1D1D; 
+        font-size: 0.6 * $baseFontSize;
+        //line-height: 2.5rem; 
+        text-align: center; 
+    }
+}
+
+.button:hover{
+    border-right-width: 2px; 
+    border-left-width: 2px; 
+}
+
+.column{
+    font-size: $baseFontSize;
+    //line-height: 2.25rem; 
+    flex: 1 1 0%; 
+}
+
+.gallery{
+    display: flex; 
+    text-align: center;
+    flex-direction: row; 
+    justify-content: space-between; 
+    width: 100%; 
+
+    .img{
+        margin-left: 1rem;
+        margin-right: 1rem; 
+    }
+}
+
+.quoteBox{
+    display: block; 
+    padding-top: $paddingSize;
+    padding-bottom: $paddingSize; 
+    text-align: center; 
+    width: 100%; 
+    border-top-width: 2px; 
+    border-bottom-width: 2px; 
+    border-color: #ffffff; 
+    
+
+    .quote{
+        font-size: 2*$baseFontSize;
+        line-height: 2*$baseFontSize; 
+    }
+
+    .red{
+        color: rgb(127 29 29);
+    }
+
+    .orange{
+        color: rgb(124 45 18);
+    }
+
+    .yellow{
+        color: rgb(113 63 18);
+    }
+
+    .green{
+        color: rgb(20 83 45);
+    }
+
+    .blue{
+        color: rgb(30 58 138);
+    }
+
+    .indigo{
+        color: rgb(49 46 129);
+    }
+
+    .violet{
+        color: rgb(76 29 149);
+    }
+
+    .white{
+        color: white;
+    }
+
+    .black{
+        color: black;
+    }
+}
+
+.textBox{
+    display: block; 
+    font-size: $baseFontSize;
+    line-height: 1; 
+}
+
+.textColumns{
+    display: block;  
+    display: flex; 
+    flex-direction: row; 
+    width: 100%; 
+
+    div:first-child {
+		padding-right: 2rem;
+    }
+
+	div:last-child {
+		padding-left: 2rem;
+    }    
+}
+
+.title{
+    display: flex;
+    margin-top: $marginSize;
+    margin-bottom: $marginSize; 
+    font-size: 3*$baseFontSize;
+    line-height: 1; 
+    text-align: center; 
+    flex: 1 1 0%; 
+
+    h1{
+        margin: 0;
+        font-size: 4 * $baseFontSize;
+    }
+}
