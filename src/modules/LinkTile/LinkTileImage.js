@@ -11,8 +11,8 @@ const Draggable = dynamic(()=> import("../../components/Draggable/Draggable"), {
   
 
 const LinkTileImage = () => {
-
     const route = "digital-active-consciousness";
+
 
     return(
         <Draggable>

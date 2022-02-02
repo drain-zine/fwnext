@@ -1,14 +1,17 @@
-
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { CMS_STATUS } from '../../constants';
+import styles from './Blog.module.scss';
+import HomeButton from '../../components/HomeButton/HomeButton';
+import FadeInDiv from '../../components/Animated/FadeInDiv';
 
 const Blog = () => {
 
     const cmsStatus =  useSelector(state => state.cms.status) || undefined;
     const parsedCMS = useSelector(state => state.cms.parsedCMS) || undefined;
-    const canvasRef = useRef(null)
+    const canvasRef = useRef(null);
+    const commentsRef = useRef(null);
 
     // scroll to url anchor, react router doesnt like so we must implement ourselves
     useEffect(() => {
@@ -51,6 +54,14 @@ const Blog = () => {
 
     },[]);
 
+    useEffect(() => {
+      if(!!canvasRef.current && !!commentsRef.current){
+        const height = canvasRef.current.parentElement.clientHeight;
+        commentsRef.current.style.height = height;
+        console.log(height);
+      }
+    }, [canvasRef, commentsRef])
+
     // update DOM
     useEffect(() => {
         if(cmsStatus === CMS_STATUS.CMS_PARSED && !!parsedCMS && !!canvasRef.current){
@@ -59,19 +70,20 @@ const Blog = () => {
     }, [cmsStatus, parsedCMS, canvasRef]); 
 
     return(
-        <main className="blog">
+        <main className={styles.blog}>
             {/* header */}
-            <header className="blogHeader">
-                <h1><b>Nimdod's Never Ending Scroll</b></h1>
+            <header>
+                <h1><b>Digital Active Consciousness</b></h1>
             </header>
-
-            <div class="flex flex-row justify-between">
-            </div>
             {/* tiles */}
-            <div className="cmsWrapper">
-                <div ref={canvasRef}>
-                </div> 
+            <div className={styles.contentWrapper}>
+              <div className={styles.cmsWrapper} ref={canvasRef}>
+              </div>
+              <FadeInDiv className={styles.comments} ref={commentsRef}>
+                <h2>IDEATIONS</h2>
+              </FadeInDiv>
             </div>
+            <HomeButton/>
         </main>
     );
 }

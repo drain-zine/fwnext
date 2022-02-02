@@ -1,19 +1,20 @@
 import React from "react";
 import Button from "../../modules/blog/cmsComponents/Button";
-//import Gallery from "../../modules/blog/cmsComponents/Gallery";
+import Gallery from "../../modules/blog/cmsComponents/Gallery";
 import QuoteBox from "../../modules/blog/cmsComponents/QuoteBox";
 import TextBox from "../../modules/blog/cmsComponents/TextBox";
 import Title from "../../modules/blog/cmsComponents/Title";
 import TextColumns from "../../modules/blog/cmsComponents/TextColumns";
 import Column from "../../modules/blog/cmsComponents/Column";
 import FadeInDiv from "../../components/Animated/FadeInDiv";
+import styles from "../../modules/blog/Blog.module.scss";
 
 
 const manifest = {
     title: Title,
     textbox: TextBox,
     button: Button,
-    //gallery: Gallery,
+    gallery: Gallery,
     quotebox: QuoteBox,
     textcol: TextColumns,
     col: Column,
@@ -53,7 +54,7 @@ const parseView = (element, index) => {
         // set post ID
         if(element.tagName === "post"){
             let post_id = element.getElementsByTagName("title")[0].textContent;
-            props = {id: post_id.replace(/[\n\s\"]+/g,""), className: "w-full justify-center items-center flex flex-col mt-16"}; 
+            props = {id: post_id.replace(/[\n\s\"]+/g,""), className: styles.post}; 
           
         } 
         

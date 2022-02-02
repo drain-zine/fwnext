@@ -9,7 +9,6 @@ const WebampCS = dynamic(()=> import("../../components/WebampWrapper/WebampWrapp
   
 const Landing = () => {
 
-
   return (
     <main className={styles.page}>
         <LinkTile />

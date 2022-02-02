@@ -12,3 +12,8 @@ export const CMS_STATUS = {
     CMS_PARSING: 'CMS_PARSING',
     CMS_PARSED: 'CMS_PARSED'
 }
+
+export const LANDING = {
+    RAND_X: 60,
+    RAND_Y: 30
+}

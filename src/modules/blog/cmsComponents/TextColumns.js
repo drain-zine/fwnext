@@ -1,9 +1,10 @@
 import React from "react";
+import styles from '../Blog.module.scss'
 
 const TextColumns= (props) => {
 
     return(
-        <div className="textColumn block flex flex-row w-full">
+        <div className={styles.textColumns}>
             {props.children}
         </div>
     );
