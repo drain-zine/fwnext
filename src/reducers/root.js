@@ -1,8 +1,10 @@
-import { combineReducers } from "redux"
-import cms from "./CMSReducer"
+import { combineReducers } from "redux";
+import cms from "./CMSReducer";
+import nav from "./NavReducer";
 
 const rootReducer = combineReducers({
-  cms
+  cms,
+  nav
 })
 
 export default rootReducer;

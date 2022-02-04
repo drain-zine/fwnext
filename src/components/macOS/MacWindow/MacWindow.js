@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 //import { useWindowSize } from "../../../hooks/useWindowSize";
+import { useDispatch, useSelector } from 'react-redux';
 import dynamic from 'next/dynamic';
 import Draggable from '../../Draggable/Draggable';
 import classnames from 'classnames';
 import styles from './MacWindow.module.scss'
+import { setHomeIsOpen } from "../../../actions/Actions";
+import Image from "next/image";
 
-///const { useWindowSize } = dynamic(()=> import("../../../hooks/useWindowSize"), { ssr: false });
+import wizard from "../../HomeButton/assets/wizard.gif"
+
+// const animVariants = {
+//   open: {
+//     opacity: 1, 
+//   }
+// }
 
 const FullIcon = ({ size }) => {
   return (
@@ -45,49 +54,27 @@ const minMarginY = 24;
 const minMarginX = 100;
 
 
-const TrafficLights = ({ id, close, max, setMax, setMin, ref}) => {
+const TrafficLights = ({closeCallback, minCallback, maxCallback}) => {
   const closeWindow = (e) => {
     e.stopPropagation();
     close(id);
   };
 
   return (
-    // <div className={styles.trafficLights}>
-    //   <button
-    //     className={classnames(styles.trafficLight, styles.red)}
-    //     onClick={closeWindow}
-    //     onTouchEnd={closeWindow}
-    //   >
-    //     <IoCloseOutline size={11} />
-    //   </button>
-    //   <button
-    //     className={classnames(styles.trafficLight, max ? styles.gray : styles.yellow)}
-    //     onClick={() => setMin(id)}
-    //     onTouchEnd={() => setMin(id)}
-    //     disabled={max}
-    //   >
-    //     <FiMinus size={11} className={classnames(max ? styles.invisible : "")} />
-    //   </button>
-    //   <button
-    //     className={classnames(styles.trafficLight, styles.green)}
-    //     onClick={() => setMax(id)}
-    //     onTouchEnd={() => setMax(id)}
-    //   >
-    //     {max ? <ExitFullIcon size={10} /> : <FullIcon size={6.5} />}
-    //   </button>
-    // </div>
-
-    <div ref={ref} className={classnames(styles.trafficLights2, styles.focus)}>
-      <button className={classnames(styles.trafficLight2, styles.close)} id="close"></button>
-      <button className={classnames(styles.trafficLight2, styles.minimise)} id="minimise"></button>
+    <div className={classnames(styles.trafficLights2, styles.focus)}>
+      <button className={classnames(styles.trafficLight2, styles.close)} onClick={closeCallback} id="close"></button>
+      <button className={classnames(styles.trafficLight2, styles.minimise)} onClick={minCallback} id="minimise"></button>
       <button className={classnames(styles.trafficLight2, styles.maximise)} id="maximise"></button>
     </div>
   );
 };
 
 const MacWindow = (props) => {
+  const dispatch = useDispatch();
+  const homeIsOpen = useSelector(state => state.nav.homeIsOpen);
   const trafficLightsRef = React.createRef();
   const headerSpacerRef = useRef(null);
+
   //const { winWidth, winHeight } = useWindowSize();
 
   // const initWidth = Math.min(winWidth, props.width ? props.width : 640);
@@ -106,6 +93,15 @@ const MacWindow = (props) => {
     // "- minMarginY" because of the boundary for windows
     y: Math.random() * (winHeight - initHeight - minMarginY)
   });
+
+  const minCallback = () => {
+    dispatch(setHomeIsOpen(false));
+  };
+
+  const openCallback = () => {
+    console.log("click!");
+    dispatch(setHomeIsOpen(true));
+  }
 
   useEffect(() => {
     setState({
@@ -131,29 +127,31 @@ const MacWindow = (props) => {
   );
 
   return (
-    <Draggable style={{
-      width: width,
-      height: height
-    }} className={classnames(styles.windowWrapper, 
-    props.max ? styles.roundedNone : styles.windowBorder,
-    props.min ? styles.minimised : "" )}>
-      <div
-        className={styles.windowBar}
-        onDoubleClick={() => props.setMax(props.id)}
-      >
-        <TrafficLights
-          id={props.id}
-          close={props.close}
-          max={props.max}
-          setMax={props.setMax}
-          setMin={props.setMin}
-          ref={trafficLightsRef}
+    <div className={styles.overlay}>
+      <Draggable className={classnames(styles.windowWrapper, 
+      props.max ? styles.roundedNone : styles.windowBorder,
+      props.min ? styles.minimised : "",
+      homeIsOpen ? styles.visible : styles.invisible )}>
+        <div
+          className={styles.windowBar}
+          onDoubleClick={() => props.setMax(props.id)}
+        >
+          <TrafficLights
+            minCallback={minCallback}
+            closeCallback={minCallback}
+          />
+          <span className={styles.title}>{props.title}</span>
+          <div></div>
+        </div>
+        <div className={styles.innerContent}>{children}</div>
+      </Draggable>
+      <div className={styles.homeIcon} onClick={openCallback}> 
+        <Image 
+          src={wizard}
+          layout={"fill"}
         />
-        <span className={styles.title}>{props.title}</span>
-        <div ref={headerSpacerRef}></div>
       </div>
-      <div className={styles.innerContent}>{children}</div>
-    </Draggable>
+    </div>
   );
 };
 

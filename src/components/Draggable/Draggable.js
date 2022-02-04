@@ -19,10 +19,10 @@ const Draggable = (props) => {
     }, [tileRef]);
 
     // bind drag listener
-    useInteractDrag(targetClass, initPos);
+    useInteractDrag(targetClass);
 
     return(
-        <div style={props.style} ref={tileRef} className={classnames(targetClass, styles.draggable, props?.className)}>
+        <div ref={tileRef} className={classnames(targetClass, styles.draggable, props?.className)}>
             {props.children}
         </div>
     );
