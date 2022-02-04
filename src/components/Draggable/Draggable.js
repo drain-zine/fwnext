@@ -22,8 +22,8 @@ const Draggable = (props) => {
     useInteractDrag(targetClass, initPos);
 
     return(
-        <div ref={tileRef} className={classnames(targetClass, styles.draggable, props?.className)}>
-            {props.children};
+        <div style={props.style} ref={tileRef} className={classnames(targetClass, styles.draggable, props?.className)}>
+            {props.children}
         </div>
     );
 

@@ -1,0 +1,239 @@
+.trafficLights{
+    display: flex; 
+    position: absolute; 
+    left: 0; 
+    padding-left: 0.5rem; 
+    margin-top: 0.375rem; 
+    margin-left: 0.5rem; 
+    display: flex; 
+    flex-direction: row; 
+}
+
+.trafficLight{
+    display: inline-flex; 
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 0.75rem; 
+    height: 0.75rem; 
+    border-radius: 9999px; 
+    outline: 0; 
+}
+
+.trafficLight:focus{
+    outline: none;
+}
+
+.windowWrapper{
+    overflow: hidden; 
+    position: absolute; 
+    background-color: transparent; 
+    width: 100%; 
+    height: 100%; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+}
+
+.windowBar{
+    position: relative; 
+    background-color: #E5E7EB; 
+    text-align: center; 
+    height: 1.5rem; 
+    display: flex;
+}
+
+.windowBorder{
+    border-width: 1px; 
+    border-color: #6B7280; 
+    border-opacity: 0.3; 
+    border-radius: 0.5rem; 
+}
+
+.minimised{
+    visibility: hidden; 
+    transition-property: opacity; 
+    transition-duration: 300ms; 
+    opacity: 0; 
+}
+
+.title{
+    color: #374151; 
+    font-weight: 600; 
+}
+
+.innerContent{
+    height: calc(100% - 1.5rem);
+    overflow-y: hidden; 
+    width: 100%; 
+}
+
+.roundedNone{
+    border-radius: 0; 
+}
+
+
+.red{
+    background-color: #EF4444; 
+}
+
+.yellow{
+    background-color: #F59E0B; 
+}
+
+.gray{
+    background-color: #9CA3AF; 
+}
+
+.green{
+    background-color: #10B981; 
+}
+
+.invisible{
+    visibility: hidden;
+}
+
+.trafficLights svg {
+    @apply hidden;
+}
+  
+.trafficLights:hover svg {
+    @apply block;
+}
+
+$close-red:                     #ff6159;
+$close-red-active:              #bf4942;
+$close-red-icon:                #4d0000;
+$close-red-icon-active:         #190000;
+
+$minimize-yellow:               #ffbd2e;
+$minimize-yellow-active:        #bf8e22;
+$minimize-yellow-icon:          #995700;
+$minimize-yellow-icon-active:   #592800;
+
+$maximize-green:                #28c941;
+$maximize-green-active:         #1d9730;
+$maximize-green-icon:           #006500;
+$maximize-green-icon-active:    #003200;
+
+$disabled-gray:                 #ddd;
+
+.trafficLights2 {
+    // position: absolute;
+    top: 1px;
+    left: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    padding-left: 0.5rem;
+
+    .focus, &:hover, &:active {
+        > .close {
+            background-color: $close-red;
+
+            &:active:hover {
+                background-color: $close-red-active;
+            }
+        }
+        > .minimise {
+            background-color: $minimize-yellow;
+
+            &:active:hover {
+                background-color: $minimize-yellow-active;
+            }
+        }
+        > .maximise {
+            background-color: $maximize-green;
+
+            &:active:hover {
+                background-color: $maximize-green-active;
+            }
+        }
+    }
+
+    > .trafficLight2 {
+        &:before, &:after {
+            visibility: hidden;
+        }
+    }
+
+    &:hover, &:active {
+        > .trafficLight2 {
+            &:before, &:after {
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.trafficLight2 {
+    border-radius: 100%;
+    padding: 0;
+    height: 12px;
+    width: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    margin-right: 3.5px;
+    background-color: $disabled-gray;
+    position: relative;
+    outline: none;
+
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        border-radius: 1px;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    .close {
+        &:before, &:after {
+            background-color: $close-red-icon;
+            width: 8px;
+            height: 1px;
+        }
+        &:before {
+            transform: rotate(45deg);// translate(-0.5px, -0.5px);
+        }
+        &:after {
+            transform: rotate(-45deg);// translate(0.5px, -0.5px);
+        }
+        &:active:hover:before, &:active:hover:after {
+            background-color: $close-red-icon-active;
+        }
+    }
+
+    .minimise {
+        &:before {
+            background-color: $minimize-yellow-icon;
+            width: 8px;
+            height: 1px;
+            //transform: translateY(-0.5px);
+        }
+        &:active:hover:before {
+            background-color: $minimize-yellow-icon-active;
+        }
+    }
+
+    .maximise {
+        &:before {
+            background-color: $maximize-green-icon;
+            width: 6px;
+            height: 6px;
+        }
+        &:after {
+            background-color: $maximize-green;
+            width: 10px;
+            height: 2px;
+            transform: rotate(45deg);
+        }
+        &:active:hover:before {
+            background-color: $maximize-green-icon-active;
+        }
+        &:active:hover:after {
+            background-color: $maximize-green-active;
+        }
+    }
+}

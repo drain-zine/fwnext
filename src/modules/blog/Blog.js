@@ -72,7 +72,7 @@ const Blog = () => {
     return(
         <main className={styles.blog}>
             {/* header */}
-            <header>
+            <header className={styles.blogHeader}>
                 <h1><b>Digital Active Consciousness</b></h1>
             </header>
             {/* tiles */}
