@@ -1,32 +1,24 @@
-import React, { useRef, useState, useEffect} from "react"
+import React from "react";
+import { motion } from "framer-motion";
 import useInteractDrag from "../../hooks/useInteractDrag";
 import styles from './Draggable.module.scss'
 import classnames from "classnames";
-import { LANDING } from '../../constants';
 
-const Draggable = (props) => {
+const Draggable =  React.forwardRef(({className, initPos = [0,0], ...props}, ref) => {
     const targetClass = "draggableTile";
-    const tileRef = useRef(null);
-    const [initPos, setInitPost] = useState(null);
-
-    useEffect(() => {
-        if(tileRef.current){
-            const pos = [Math.random() * (LANDING.RAND_X - 5) + 5, Math.random() * (LANDING.RAND_Y - 5) + 5];
-            console.log(tileRef.current);
-            tileRef.current.style.transform = `translate(${pos[0]}%,${pos[1]}%)`
-            setInitPost(pos);
-        }
-    }, [tileRef]);
 
     // bind drag listener
-    useInteractDrag(targetClass);
+    useInteractDrag(targetClass, initPos);
 
     return(
-        <div ref={tileRef} className={classnames(targetClass, styles.draggable, props?.className)}>
+        <motion.div 
+            ref={ref} 
+            className={classnames(targetClass, styles.draggable, className)}
+            {...props} >
             {props.children}
-        </div>
+        </motion.div>
     );
 
-};
+});
 
 export default Draggable;

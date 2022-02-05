@@ -53,9 +53,12 @@ export const setCMSError = (error) => {
   });
 };
 
-export const setHomeIsOpen = (isOpen) => {
-  return({
-    type: t.SET_HOME_ISOPEN,
-    isOpen
-  });
-}
+export const setHomeIsOpen = (isOpen) => ({
+  type: t.SET_HOME_ISOPEN,
+  isOpen
+});
+
+export const setHomeTransform = (transform) => ({
+  type: t.SET_HOME_TRANSFORM,
+  transform
+});

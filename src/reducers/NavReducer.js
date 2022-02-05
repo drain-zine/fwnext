@@ -7,6 +7,11 @@ const nav = (state = {}, action) => {
                 ...state,
                 homeIsOpen: action.isOpen
             };
+        case t.SET_HOME_TRANSFORM: 
+            return {
+                ...state,
+                homeTransform: action.transform
+            };
         default:
             return {...state};    
     }

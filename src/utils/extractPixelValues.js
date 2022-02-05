@@ -1,0 +1,1 @@
+export const extractPixelValues = (str) => str.match(/[\d\.]+/g).map(Number);
