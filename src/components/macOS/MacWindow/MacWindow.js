@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion"
 //import { useWindowSize } from "../../../hooks/useWindowSize";
 import { useDispatch, useSelector } from 'react-redux';
-import dynamic from 'next/dynamic';
 import Draggable from '../../Draggable/Draggable';
 import classnames from 'classnames';
 import styles from './MacWindow.module.scss'
@@ -24,11 +22,6 @@ const minMarginX = 100;
 
 
 const TrafficLights = ({closeCallback, minCallback, maxCallback}) => {
-  const closeWindow = (e) => {
-    e.stopPropagation();
-    close(id);
-  };
-
   return (
     <div className={classnames(styles.trafficLights2, styles.focus)}>
       <button className={classnames(styles.trafficLight2, styles.close)} onClick={closeCallback} id="close"></button>
@@ -46,8 +39,6 @@ const MacWindow = (props) => {
   const trafficLightsRef = React.createRef();
   const headerSpacerRef = useRef(null);
   const windowRef = useRef(null);
-
-  console.log(transformPosition);
 
   //const { winWidth, winHeight } = useWindowSize();
 
@@ -85,6 +76,8 @@ const MacWindow = (props) => {
     });
   }, [winWidth, winHeight]);
 
+
+  // TO FIX
   useEffect(() => {
     if(trafficLightsRef.current && headerSpacerRef.current){
       headerSpacerRef.current.style.width = trafficLightsRef.current.style.width;
