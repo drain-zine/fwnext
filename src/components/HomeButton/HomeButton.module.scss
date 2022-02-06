@@ -3,49 +3,24 @@
     src: URL('../../fonts/Halo.ttf') format('truetype');
   }
 
-$panelWidth: 500px;  
-
-.panel{
-    background-image: url('./assets/BackGround2.png');
-    width: $panelWidth;
-    height: calc($panelWidth * calc(1026/1444));
-    background-repeat: no-repeat;
-    background-size: $panelWidth;
-    display: inline-block;
+.imagePane{
     position: absolute;
-}
-
-.audioWrapper{
-    display: inline-block;
-    position: absolute;
-    left: 55%;
-    top: 25%;
-
-    audio{
-        width: 200px;
-    }
-}
-
-.container{
-    position: absolute;
-    display: inline-block;
-    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     text-align: center;
-    width: 150px;
-    height: 150px;
     cursor: pointer;
-    z-index: 100;
-    font-family: 'Halo';
-    font-size: 2rem;
-    top: 15%;
-    left: 20%;
-    
+
+    img{
+        border-width: 1px;
+        border-radius: 0.5rem;
+    }
 
     p{
         margin: 0;
     }
-}
 
-.container:hover{
-    color: purple;
+    &:hover{
+        color: purple;
+    }
 }
