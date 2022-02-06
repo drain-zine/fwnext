@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@rooks/use-raf": "^4.11.2",
     "axios": "^0.24.0",
     "classnames": "^2.2.6",
     "framer-motion": "^4.1.17",

@@ -8,7 +8,7 @@ import { setHomeIsOpen, setHomeTransform } from "../../../actions/Actions";
 import Image from "next/image";
 import { extractPixelValues } from '../../../utils/extractPixelValues';
 
-import wizard from "../../HomeButton/assets/wizard.gif"
+import wizard from "../../HomeButton/assets/wizard.gif";
 
 // const animVariants = {
 //   open: {
@@ -64,9 +64,9 @@ const MacWindow = (props) => {
     dispatch(setHomeIsOpen(false));
   };
 
-  const openCallback = () => {
-    dispatch(setHomeIsOpen(true));
-  }
+  // const openCallback = () => {
+  //   dispatch(setHomeIsOpen(true));
+  // }
 
   useEffect(() => {
     setState({
@@ -94,7 +94,6 @@ const MacWindow = (props) => {
   );
 
   return (
-    <div className={styles.overlay}>
       <Draggable 
         className={classnames(styles.windowWrapper, 
           props.max ? styles.roundedNone : styles.windowBorder,
@@ -123,13 +122,6 @@ const MacWindow = (props) => {
             </div>
             <div className={styles.innerContent}>{children}</div>
       </Draggable>
-      <div className={styles.homeIcon} onClick={openCallback} > 
-        <Image 
-          src={wizard}
-          layout={"fill"}
-        />
-      </div>
-    </div>
   );
 };
 
