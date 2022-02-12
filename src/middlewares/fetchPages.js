@@ -29,9 +29,19 @@ const formatPagesObj = ({cms}) => {
         "/cms/wagwan/test2"
     ];
 
+    
+    console.log(process.env.menu);
+    const mainPages = process.env.menu.map(page => {
+        return({
+            [toTitleCase(page.name)]: {
+                link: page.link
+            }
+        });
+    });
 
-    console.log(cms);
-    const pageArticles = cms.map(c => {
+    console.log(mainPages);
+
+    const cmsArticles = cms.map(c => {
         const route = c.split('/cms/')[1];
         const page = toTitleCase(route.split('/')[0]);
         const articleName = route.split('/')[1];
@@ -44,7 +54,9 @@ const formatPagesObj = ({cms}) => {
         });
     });
 
-    const formatCMS = pageArticles.reduce((acc, curr) => {        
+    console.log(cmsArticles);
+
+    const formatCMS = [...cmsArticles, ...mainPages].reduce((acc, curr) => {        
         const key = Object.keys(curr)[0]
         const found = acc.find(i => i[key])
         if (!found) {
@@ -74,10 +86,7 @@ const testData = {
         name: 'Trucking',
         link: 'test'
     }],
-    'drain-00': {
-        name: 'Drain00',
-        link: '/drain-00'
-    }
+    'drain-00': '/drain-00'
 }
 
 export const fetchPagesForNav = (store) => (next) => (action)  => {
