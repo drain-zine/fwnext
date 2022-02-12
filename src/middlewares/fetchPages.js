@@ -56,7 +56,7 @@ const formatPagesObj = ({cms}) => {
     }, []);
 
     console.log(formatCMS);
-    return formatCMS;
+    return Object.assign({}, ...formatCMS);
 }
 
 export const fetchPagesForNav = (store) => (next) => (action)  => {

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './ScrollPanel.module.scss';
+import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import torch from './assets/torch.gif';
@@ -46,17 +48,47 @@ const itemVariants = {
 const subItemVariants = {
     open: {
         opacity: 1,
-        height: "auto"
+        height: "auto",
+        marginBottom: "0.9rem"
     },
     closed: {
       opacity: 0,
-      height: 0
+      height: 0,
+      marginBottom: 0
     }
   };
 
 
 const ScrollPanel = () => {
     const [isOpen, setIsOpen] = useState(null);
+    //const pages  = useSelector(state => state.nav.pages) || {};
+    const pages = {
+        'Digital Active Consciousness': [
+          {
+            name: 'Test',
+            link: '/digital-active-consciousness#test'
+          },
+          {
+            name: 'Test 2',
+            link: '/digital-active-consciousness#test2'
+          },
+          {
+            name: 'Test 3',
+            link: '/digital-active-consciousness#test3'
+          },
+          {
+            link: '/digital-active-consciousness',
+            name: 'All'
+          }
+        ],
+        'Drain 00': {
+          link: '/drain00'
+        },
+        Home: {
+          link: '/'
+        }
+      };
+
 
     const isOpenCallback = (i) => {
         if(i === isOpen){
@@ -88,14 +120,15 @@ const ScrollPanel = () => {
                     </div>
                 </div>
 
-                {Object.keys(testData).map((item, i) => (
+                {Object.keys(pages).map((item, i) => (
                     <motion.div
                         animate={isOpen === i ? "open" : "closed"}
                         variants={itemVariants}
                         className={classnames(styles.item, styles[randomFonts[i]])} onClick={() => isOpenCallback(i)}
                     >
-                        <p>{testData[item].length > 0 ? item : testData[item].name}</p>
-                        {testData[item].length > 0 ? testData[item].map(subItem => (
+                        
+                        <p>{pages[item].length > 0 ? item : <Link href={pages[item].link}>{pages[item].name ? pages[item].name : item}</Link>}</p>
+                        {pages[item].length > 0 ? pages[item].map(subItem => (
                             <motion.div 
                                 className={styles.subItem}
                                 variants={subItemVariants}
@@ -103,7 +136,7 @@ const ScrollPanel = () => {
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                            {subItem.name}</motion.div>
+                            <Link href={subItem.link}>{subItem.name}</Link></motion.div>
                         )) : null}
                     </motion.div>
                 ))}
