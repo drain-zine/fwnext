@@ -2,7 +2,7 @@ import { wrapper } from '../store/store';
 import '../styles/globals.scss';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCMSEndpoints, fetchCMS } from '../actions/Actions';
+import { fetchCMSEndpoints, fetchCMS, fetchPagesForNav } from '../actions/Actions';
 import { CMS_STATUS } from '../constants';
 
 const App = ({Component, pageProps, router}) => {
@@ -21,7 +21,14 @@ const App = ({Component, pageProps, router}) => {
     if(cmsStatus === CMS_STATUS.CMS_READY_TO_FETCH){
       dispatch(fetchCMS());
     }
-  }, [cmsStatus])
+  }, [cmsStatus]);
+
+    // read pages + cms to format nav
+    useEffect(() => {
+      if(cmsStatus === CMS_STATUS.CMS_PARSED){
+        dispatch(fetchPagesForNav());
+      }
+    }, [cmsStatus]);
 
     return(
         <Component router={router} {...pageProps} />

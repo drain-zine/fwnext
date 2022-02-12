@@ -24,6 +24,8 @@ const TrafficLights = ({closeCallback, minCallback, maxCallback}) => {
 
 const Finder = (props) => {
   const dispatch = useDispatch();
+  const navText = props.navText;
+  const [activeNav, setActiveNav] = useState(0);
   const homeIsOpen = useSelector(state => state.nav.homeIsOpen);
   const transformPosition = useSelector(state => state.nav.homeTransform);
   const buttonPosition = 'translate(-117.6px, 484.8px)'
@@ -112,8 +114,15 @@ const Finder = (props) => {
                 </div>
                 <div className={styles.sideBarContent}>
                     <p className={styles.favourites}>Favourites</p>
-                    <p>Home</p>
-                    <p>Scroll</p>
+                    {navText.map((n,i) => (
+                      <div 
+                        className={classnames(styles.option, i === activeNav ? styles.active: '')}
+                        onClick={() => {
+                          windowRef.current && dispatch(setHomeTransform(windowRef.current.style.transform));
+                          setActiveNav(i)
+                        }}
+                        ><p>{n}</p></div>
+                    ))} 
                 </div>
             </div>
 
@@ -124,7 +133,11 @@ const Finder = (props) => {
                         <div className={styles.controls}></div>
                     </div>
                 </div>
-                <div className={styles.innerContent}>{children}</div>
+                <section className={styles.innerContent}>
+                  {React.Children.map(props.children, (c,i) => (
+                    <div className={classnames(i === activeNav ? styles.active : styles.inactive)}>{c}</div>
+                  ))}
+                </section>
             </div>
              
       </Draggable>

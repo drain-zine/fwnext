@@ -12,6 +12,22 @@ const nav = (state = {}, action) => {
                 ...state,
                 homeTransform: action.transform
             };
+        case t.SET_WEBAMP_ISOPEN: 
+            return {
+                ...state,
+                webampIsOpen: action.isOpen
+            };
+        case t.SET_WEBAMP_TRANSFORM: 
+            return {
+                ...state,
+                homeTransform: action.transform
+            };   
+        case t.SET_PAGES_FOR_NAV: {
+            return {
+                ...state,
+                pages: action.pages
+            };
+        }     
         default:
             return {...state};    
     }

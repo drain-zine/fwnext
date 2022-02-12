@@ -27,6 +27,10 @@
 $headerHeight: 50px;
 
 $borderColor: #E3E3E3;
+
+$activeColor: #D3D3D3;
+$hoverColor: #E6E6E6;
+
 .windowWrapper{
     overflow: hidden; 
     position: absolute; 
@@ -70,10 +74,36 @@ $borderColor: #E3E3E3;
     color: black;
     height: 100%;
     border-right: 1px solid $borderColor;
+
+    .option{
+        border-radius: 0.25rem;
+        border: 1px;
+        width: 90%;
+        height: 25px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 1rem;
+        cursor: pointer;
+
+        p {
+            font-size: 0.85rem;
+        }
+    }
+
+    .option:hover .option:not(.active){
+        background-color: $hoverColor;
+    }
+
+    .active{
+        background-color: $activeColor;
+    }
 }
 
+
+
 .favourites{
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     color: #AFA9A9;
 }
 
@@ -119,6 +149,15 @@ $borderColor: #E3E3E3;
     width: 100%; 
     background-color: white;
     position: relative;
+
+    .active{
+        visibility: visible;
+        height: 100%;
+    }
+
+    .inactive{
+        visibility: hidden;
+    }
 }
 
 .roundedNone{

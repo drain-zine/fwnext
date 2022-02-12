@@ -28,13 +28,21 @@ const WebampWrapper = () => {
             throw new Error("What's the point of anything?")
         }
 
-    
+        webamp.onMinimize(() => {
+            console.log("Webamp closed");
+            
+        });
+
+        
         webamp.renderWhenReady(webampRef.current);
 
         return () => {
             webamp.dispose();
         };
+
     },[webampRef]);
+
+
 
     return(
         <div ref={webampRef}></div>
