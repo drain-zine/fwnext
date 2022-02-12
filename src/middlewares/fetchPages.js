@@ -55,7 +55,6 @@ const formatPagesObj = ({cms}) => {
         return acc;
     }, []);
 
-    console.log(formatCMS);
     return Object.assign({}, ...formatCMS);
 }
 
