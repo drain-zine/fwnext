@@ -40,8 +40,8 @@ const App = ({Component, pageProps, router}) => {
           <DesktopOverlay>
             <HomeButton />
             <WebampCS />
-        </DesktopOverlay>  
-          </>
+          </DesktopOverlay>  
+        </>
   );
 }
 

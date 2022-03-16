@@ -32,6 +32,7 @@ const Dock = (props) => {
                         key={0}
                         mouseX={mouseX} />
                     <ImageMagnify
+                        id={'webampIdKillMe'}
                         onClick={webampOpenCallback} 
                         className={styles.dockItem} 
                         src={music}

@@ -1,6 +1,9 @@
 import * as t from "../actions/ActionTypes";
 
-const nav = (state = {}, action) => {
+const nav = (state = {
+    homeIsOpen: false,
+    webampIsOpen: true
+}, action) => {
     switch(action.type){
         case t.SET_HOME_ISOPEN: 
             return {

@@ -6,6 +6,8 @@
     display: flex;
     justify-content: center;
     z-index: 5000;
+    pointer-events: all;
+    cursor: pointer;
 }
 
 .dockItems{
