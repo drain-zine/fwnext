@@ -4,6 +4,10 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCMSEndpoints, fetchCMS, fetchPagesForNav } from '../actions/Actions';
 import { CMS_STATUS } from '../constants';
+import HomeButton from '../components/HomeButton/HomeButton';
+import DesktopOverlay from "../modules/DesktopOverlay/DesktopOverlay";
+import dynamic from 'next/dynamic';
+const WebampCS = dynamic(()=> import("../components/WebampWrapper/WebampWrapper"), { ssr: false });
 
 const App = ({Component, pageProps, router}) => {
 
@@ -31,7 +35,13 @@ const App = ({Component, pageProps, router}) => {
     }, [cmsStatus]);
 
     return(
-        <Component router={router} {...pageProps} />
+        <>
+          <Component router={router} {...pageProps} />
+          <DesktopOverlay>
+            <HomeButton />
+            <WebampCS />
+        </DesktopOverlay>  
+          </>
   );
 }
 
