@@ -7,7 +7,7 @@ import Link from 'next/link'
 const Draggable = dynamic(()=> import("../../components/Draggable/Draggable"), { ssr: false });
   
 
-const LinkTile = () => {
+const Drain00Tile = () => {
 
     return(
         <Draggable>
@@ -54,4 +54,4 @@ const LinkTile = () => {
 
 };
 
-export default LinkTile;
+export default Drain00Tile;

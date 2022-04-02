@@ -81,7 +81,7 @@ const Blog = () => {
             <div className={styles.contentWrapper}>
               <div className={styles.cmsWrapper} ref={canvasRef}>
               </div>
-              <FadeInDiv className={styles.comments} ref={commentsRef}>
+              <FadeInDiv style={{visibility: 'hidden'}} className={styles.comments} ref={commentsRef}>
                 <h2>IDEATIONS</h2>
               </FadeInDiv>
             </div>

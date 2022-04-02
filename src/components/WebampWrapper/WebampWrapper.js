@@ -12,7 +12,13 @@ const WebampConfig = {
         title: "My Favourite Song",
     },
     url: "nookie.mp3"
-    }],
+    },{
+        metaData: {
+            artist: "Some French Man",
+            title: "Bella Ciao",
+        },
+        url: "BellaCiao.mp3"
+        }],
     initialSkin: {
         url: 'Sequel.wsz'
     },
@@ -51,31 +57,10 @@ const WebampWrapper = () => {
         webamp.renderWhenReady(webampRef.current);
 
         return () => {
-            console.log('disposing');
             webamp.dispose();
         };
 
     },[webampRef]);
-
-    useEffect(() => {
-        if(webampIsOpen){
-            console.log('should open wtf');
-            webamp.reopen();
-        }
-    }, [webampIsOpen]);
-
-    
-    const minimise = useCallback(
-        () => {
-            console.log("Webamp closed");
-            if(webampRef.current){
-                console.log('ref');
-                webampRef.current.style.display = 'none';
-                console.log(webampRef.current.style);
-            }
-        },
-        [webampRef],
-    );
 
     return(
         <div ref={webampRef}></div>

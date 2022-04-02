@@ -15,6 +15,7 @@ const Drain00 = () => {
 
     const rightText = useRef();
     const bottomText = useRef();
+    const iframeRef = useRef();
 
     // Append rainbow
     useEffect(() => {
@@ -47,7 +48,7 @@ const Drain00 = () => {
     }, [rightText, bottomText]);
 
     useEffect(() => {
-        var canvas = document.body.appendChild( document.createElement( 'canvas' ) ),
+        var canvas = document.body.firstChild.appendChild( document.createElement( 'canvas' ) ),
         context = canvas.getContext( '2d' );
         context.globalCompositeOperation = 'lighter';
         canvas.width = canvasx;
@@ -125,9 +126,8 @@ const Drain00 = () => {
     }, []);
 
     return(
-        <main>
+        <main className={styles.page}>
             <section className={styles.mainBackground}>
-                <HomeButton className={styles.homeButton}/>
                 <div className={styles.banner}>
                     <Image src={banner}/>
                 </div>
@@ -136,7 +136,7 @@ const Drain00 = () => {
                         <Image src={possibilty} />  
                     </div>
 
-                    <div style = {{"z-index": "0"}} className={classnames(styles.centerContainer, styles.gnomehand)}>
+                    <div style = {{"zIndex": "0"}} className={classnames(styles.centerContainer, styles.gnomehand)}>
                         <Image src={gnomehand} />  
                     </div>
                 </section>
@@ -178,7 +178,7 @@ const Drain00 = () => {
             </section>
             <div className={styles.divider}></div>
             <section className={styles.drain01}>
-                <iframe className={styles.drainIframe} src="https://zen-kowalevski-bab42e.netlify.app/overworld.html">
+                <iframe ref={iframeRef} className={styles.drainIframe} src="https://zen-kowalevski-bab42e.netlify.app/overworld.html">
 
                 </iframe>
             </section>

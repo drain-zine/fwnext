@@ -10,7 +10,7 @@ import test from './assets/ConciousnessCollage.png';
 const Draggable = dynamic(()=> import("../../components/Draggable/Draggable"), { ssr: false });
   
 
-const LinkTileImage = () => {
+const BlogTile = () => {
     const route = "digital-active-consciousness";
 
 
@@ -55,4 +55,4 @@ const LinkTileImage = () => {
 
 };
 
-export default LinkTileImage;
+export default BlogTile;

@@ -1,11 +1,17 @@
 // BLOG
 
-$baseFontSize: 1rem;
+@font-face {
+    font-family: 'GT';
+    src: URL('../../fonts/GTRegular.ttf') format('truetype');
+}
+
+$baseFontSize: 1.45rem;
 $paddingSize: 2rem;
 $marginSize: 1rem;
 $commentSize: 14rem;
 
 .blog{
+    font-family: 'GT';
     font-size: $baseFontSize;
     display: flex; 
     position: relative; 
@@ -33,7 +39,7 @@ $commentSize: 14rem;
         h1 {
             padding-top: $paddingSize;
             padding-bottom: $paddingSize; 
-            font-size: 3 * $baseFontSize;
+            font-size: calc(4.8 * $baseFontSize);
             line-height: 1; 
             text-align: center; 
             flex: 1 1 0%; 
@@ -72,7 +78,9 @@ $commentSize: 14rem;
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    width: 100%; 
+    width: 100%;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white; 
 }
 
 // COMPONENTS
@@ -123,6 +131,7 @@ $commentSize: 14rem;
     flex-direction: row; 
     justify-content: space-between; 
     width: 100%; 
+    margin: 1rem 0;
 
     .img{
         margin-left: 1rem;
@@ -142,8 +151,8 @@ $commentSize: 14rem;
     
 
     .quote{
-        font-size: 2*$baseFontSize;
-        line-height: 2*$baseFontSize; 
+        font-size: 1.75*$baseFontSize;
+        line-height: 1.75*$baseFontSize; 
     }
 
     .red{
@@ -206,8 +215,8 @@ $commentSize: 14rem;
 
 .title{
     display: flex;
-    margin-top: $marginSize;
-    margin-bottom: $marginSize; 
+    padding-top: $paddingSize;
+    padding-bottom: $paddingSize; 
     font-size: 3*$baseFontSize;
     line-height: 1; 
     text-align: center; 
