@@ -33,11 +33,6 @@ const Finder = (props) => {
   const headerSpacerRef = useRef(null);
   const windowRef = useRef(null);
 
-  //const { winWidth, winHeight } = useWindowSize();
-
-  // const initWidth = Math.min(winWidth, props.width ? props.width : 640);
-  // const initHeight = Math.min(winHeight, props.height ? props.height : 400);
-
   const winWidth = 640;
   const winHeight = 400;
   const initWidth = 640;
@@ -57,10 +52,6 @@ const Finder = (props) => {
     dispatch(setHomeIsOpen(false));
   };
 
-  // const openCallback = () => {
-  //   dispatch(setHomeIsOpen(true));
-  // }
-
   useEffect(() => {
     setState({
       ...state,
@@ -74,7 +65,6 @@ const Finder = (props) => {
   useEffect(() => {
     if(trafficLightsRef.current && headerSpacerRef.current){
       headerSpacerRef.current.style.width = trafficLightsRef.current.style.width;
-      console.log( trafficLightsRef.current.style.width);
     }
   }, [trafficLightsRef, headerSpacerRef])
 

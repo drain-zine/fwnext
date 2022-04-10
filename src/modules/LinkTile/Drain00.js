@@ -1,20 +1,20 @@
 import React from "react";
 import styles from './LinkTile.module.scss';
-import dynamic from 'next/dynamic';
 import classnames from 'classnames';
 import Link from 'next/link'
-
-const Draggable = dynamic(()=> import("../../components/Draggable/Draggable"), { ssr: false });
-  
+import MacWindow from '../../components/macOS/MacWindow/MacWindow';
+import Drain00  from '../../modules/articles/drain00/Drain00';
+import getRandomTransform from "../../utils/getRandomTransform";
 
 const Drain00Tile = () => {
 
     return(
-        <Draggable>
+        <MacWindow 
+            transformPosition={getRandomTransform()} 
+            title={'Drain 00'}
+            maximiseComponent={<Drain00/>}
+        >
             <section className={styles.tile}>
-                <header className={styles.tileHeader}>
-
-                </header>
                 <main className={styles.tileBody}>
                     <section className={styles.leftSideBar}>
                         <div className={classnames(styles.bar,styles.verticalL)}>
@@ -35,7 +35,7 @@ const Drain00Tile = () => {
 
                     <section className={styles.content}>
                         <h1 className={styles.temp1}>Drain Magazine <Link href="/drain00">Edition 000</Link></h1>
-                        <p className={styles.temp2}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia, dolor et commodo fermentum, nibh tortor pellentesque enim, et rutrum eros sem vel enim. Fusce dictum lorem sem, ac efficitur purus faucibus et. Nunc laoreet nisi non volutpat accumsan. Nullam tempor turpis et ultrices varius. Sed ac finibus metus, et consequat risus. Proin sollicitudin vehicula tellus id ullamcorper. Nunc in urna in arcu pulvinar facilisis quis eget sem.</p>
+                        <p className={styles.temp2}>Both in Derrida’s original articulation of the concept, and its current recirculation, 15 years after Specters Of Marx, hauntology must be understood in relation to postmodernity. Postmodernism, in turn, has to be understood – as Jameson has taught us – as ‘the logic of late capitalism’. Postmodern temporality is captured by Fukuyama’s claim – everywhere officially disavowed, even by Fukuyma itself, even as, surreptitiously, it is universally accepted, operating as a kind of presupposition of the contemporary cultural unconscious – that we have reached the ‘end of History’. This is not only the conclusion of the process, but also the final cause to which everything has always been tending. End, then, in a double, appropriately Hegelian, sense: the terminus and the teleological goal.</p>
                     </section>
 
                     <section className={classnames(styles.rightSideBar, styles.verticalR)}>
@@ -49,7 +49,7 @@ const Drain00Tile = () => {
 
                 </main>
             </section>
-        </Draggable>
+        </MacWindow>
     );
 
 };

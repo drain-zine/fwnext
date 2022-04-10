@@ -1,25 +1,23 @@
 import React from "react";
 import styles from './LinkTile.module.scss';
-import dynamic from 'next/dynamic';
 import classnames from 'classnames';
 import Link from 'next/link';
 import Image from'next/image';
 import test from './assets/ConciousnessCollage.png';
-
-
-const Draggable = dynamic(()=> import("../../components/Draggable/Draggable"), { ssr: false });
-  
+import MacWindow from "../../components/macOS/MacWindow/MacWindow";
+import Blog  from '../../modules/blog/Blog';
+import getRandomTransform from "../../utils/getRandomTransform";
 
 const BlogTile = () => {
     const route = "digital-active-consciousness";
 
-
     return(
-        <Draggable>
+        <MacWindow 
+            transformPosition={getRandomTransform()} 
+            title={'Digital Active Concioussness'}
+            maximiseComponent={<Blog/>}
+        >
             <section className={styles.tile}>
-                <header className={styles.tileHeader}>
-
-                </header>
                 <div className={styles.bgWrap}>
                     <Image 
                         src={test}
@@ -50,7 +48,7 @@ const BlogTile = () => {
 
                 </main>
             </section>
-        </Draggable>
+        </MacWindow>
     );
 
 };

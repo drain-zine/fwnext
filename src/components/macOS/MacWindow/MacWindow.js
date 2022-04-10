@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-//import { useWindowSize } from "../../../hooks/useWindowSize";
-import { useDispatch, useSelector } from 'react-redux';
 import Draggable from '../../Draggable/Draggable';
 import classnames from 'classnames';
 import styles from './MacWindow.module.scss'
-import { setHomeIsOpen, setHomeTransform } from "../../../actions/Actions";
-import Image from "next/image";
 import { extractPixelValues } from '../../../utils/extractPixelValues';
+import { motion } from 'framer-motion';
 
-import wizard from "../../HomeButton/assets/wizard.gif";
 
-// const animVariants = {
-//   open: {
-//     opacity: 1, 
-//   }
-// }
+const minimiseVariants = {
+  open: {
+    height: "100%"
+  },
+  minimised: {
+    height: "0"
+  }
+}
 
 
 const minMarginY = 24;
@@ -26,29 +25,41 @@ const TrafficLights = ({closeCallback, minCallback, maxCallback}) => {
     <div className={classnames(styles.trafficLights2, styles.focus)}>
       <button className={classnames(styles.trafficLight2, styles.close)} onClick={closeCallback} id="close"></button>
       <button className={classnames(styles.trafficLight2, styles.minimise)} onClick={minCallback} id="minimise"></button>
-      <button className={classnames(styles.trafficLight2, styles.maximise)} id="maximise"></button>
+      <button className={classnames(styles.trafficLight2, styles.maximise)} onClick={maxCallback} id="maximise"></button>
     </div>
   );
 };
 
 const MacWindow = (props) => {
-  const dispatch = useDispatch();
-  const homeIsOpen = useSelector(state => state.nav.homeIsOpen);
-  const transformPosition = useSelector(state => state.nav.homeTransform);
-  const buttonPosition = 'translate(-117.6px, 484.8px)'
+  const disableMaximiseScroll = props.disableMaximiseScroll || false;
+  const transformPosition = props.transformPosition;
   const trafficLightsRef = React.createRef();
   const headerSpacerRef = useRef(null);
   const windowRef = useRef(null);
+  const [isMinimised, setIsMinimised] = useState(false);
+  const [isMaximised, setIsMaximised] = useState(false);
+  const [currTransform, setCurrTransform] = useState(transformPosition || 'translate(0,0)');
+  const [currZIndex, setCurrZIndex] = useState(10);
 
-  //const { winWidth, winHeight } = useWindowSize();
+  const winWidth = 1000;
+  const winHeight = 622.5;
+  const initWidth = 1000;
+  const initHeight = 622.5;
 
-  // const initWidth = Math.min(winWidth, props.width ? props.width : 640);
-  // const initHeight = Math.min(winHeight, props.height ? props.height : 400);
-
-  const winWidth = 640;
-  const winHeight = 400;
-  const initWidth = 640;
-  const initHeight = 400;
+  const maximiseVariants = {
+    open: {
+      height: "auto",
+      width: "auto",
+      x: extractPixelValues(currTransform)[0],
+      y:  extractPixelValues(currTransform)[1]
+    },
+    maximised: {
+      height: "100%",
+      width: "100%",
+      x: 0,
+      y: 0
+    }
+  }
 
   const [state, setState] = useState({
     width: initWidth,
@@ -60,13 +71,21 @@ const MacWindow = (props) => {
   });
 
   const minCallback = (transform) => {
-    dispatch(setHomeTransform(transform));
-    dispatch(setHomeIsOpen(false));
+    setCurrZIndex(transform.zIndex);
+    setCurrTransform(transform.transform);
+    setIsMinimised(prevIsMinimised => !prevIsMinimised);
+    setIsMaximised(false);
   };
 
-  // const openCallback = () => {
-  //   dispatch(setHomeIsOpen(true));
-  // }
+  const maxCallback = (transform) => {
+    setCurrZIndex(transform.zIndex);
+    if(!isMaximised){
+      setCurrTransform(transform);
+    }
+    setIsMaximised(prevIsMaximised => !prevIsMaximised);
+    setIsMinimised(false);
+  };
+
 
   useEffect(() => {
     setState({
@@ -96,31 +115,40 @@ const MacWindow = (props) => {
   return (
       <Draggable 
         className={classnames(styles.windowWrapper, 
-          props.max ? styles.roundedNone : styles.windowBorder,
+          props.max ? styles.roundedNone : styles.windowBorder,    
           props.min ? styles.minimised : "" )}
+        style={{zIndex: currZIndex}}  
         ref={windowRef} 
-        animate={homeIsOpen ? "open" : "close"} 
-        transition={{ duration: 0.4 }}
-        initial={{transform: transformPosition}}
-        initPos={transformPosition && extractPixelValues(transformPosition)}
-        key={transformPosition}
-        variants={{
-            open: {opacity: 1, transform: transformPosition, zIndex: 100},
-            close: {opacity: 0, transform: buttonPosition, zIndex: 0} }}>
+        initial={{transform: currTransform}}
+        initPos={extractPixelValues(currTransform)}
+        key={currTransform}
+        initial={maximiseVariants.open}
+        variants={maximiseVariants}
+        animate={isMaximised ? maximiseVariants.maximised : maximiseVariants.open}
+       >
             <div
               className={styles.windowBar} >
               <TrafficLights
-                minCallback={() => {
-                  windowRef.current && minCallback(windowRef.current.style.transform);
-                }}
-                closeCallback={() => {
-                  windowRef.current && minCallback(windowRef.current.style.transform);
-                }}
+                minCallback={() => windowRef.current && minCallback(windowRef.current.style)}
+                closeCallback={() => minCallback()}
+                maxCallback={() => windowRef.current && maxCallback(windowRef.current.style.transform)}
               />
               <span className={styles.title}>{props.title}</span>
               <div></div>
             </div>
-            <div className={styles.innerContent}>{children}</div>
+            <motion.div 
+              initial={minimiseVariants.open}
+              variants={minimiseVariants}
+              animate={isMinimised ? minimiseVariants.minimised : minimiseVariants.open}
+              transition={{ duration: 0.4 }}
+              className={classnames(styles.innerContent, {[styles.overflow]: isMaximised && !disableMaximiseScroll})}>
+              {isMaximised ? 
+                props.maximiseComponent
+                  : 
+              
+                children
+              }
+            </motion.div>
       </Draggable>
   );
 };

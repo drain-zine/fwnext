@@ -100,12 +100,7 @@ const ScrollPanel = () => {
 
     return(
         <div className={styles.scrollWrapper}>
-            <div className={styles.topBanner}/>
             <div className={styles.navWrapper}>
-                <div className={styles.leftBanner}/>
-                <div className={styles.rightBanner}/>
-                <div className={styles.bottomBanner}/>
-
                 <div className={styles.header}>
                     <div className={styles.torch}>
                         <Image 
@@ -124,7 +119,7 @@ const ScrollPanel = () => {
                     <motion.div
                         animate={isOpen === i ? "open" : "closed"}
                         variants={itemVariants}
-                        className={classnames(styles.item, styles[randomFonts[i]])} onClick={() => isOpenCallback(i)}
+                        className={classnames(styles.item, styles[isOpen === i ? "open" : "closed"], styles[randomFonts[i]])} onClick={() => isOpenCallback(i)}
                     >
                         
                         <p>{pages[item].length > 0 ? item : <Link href={pages[item].link}>{pages[item].name ? pages[item].name : item}</Link>}</p>

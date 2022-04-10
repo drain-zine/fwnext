@@ -49,8 +49,9 @@
 .scrollWrapper{
     height: 100%;
     height: 100%;
-    background-color: #303030;
-    color: white;
+    // background-color: #303030;
+    // color: white;
+    color: black;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -68,7 +69,6 @@
     top: 0;
     left: 0;
     text-align: center;
-    padding-top: 5rem;
     overflow: hidden;
     height: 600px;
     position: relative;
@@ -144,6 +144,12 @@ $bannerHeight: 52px;
     height: 100%;
 }
 
+.closed{
+    *{
+        height: 0;
+    }
+}
+
 .header{
     display: flex;
     flex-direction: row;
@@ -151,8 +157,6 @@ $bannerHeight: 52px;
     align-items: center;
     position: relative;
     top: 0%;
-    margin-left: 2rem;
-    margin-right: 2rem;
 
     p{
         font-family: 'Cloister';
@@ -167,13 +171,6 @@ $bannerHeight: 52px;
     }
 }
 
-.header:first-child{
-    margin-left: 3rem;
-}
-
-.header:last-child{
-    margin-right: 3rem;
-}
 
 
 .footer{
