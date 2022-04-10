@@ -57,7 +57,8 @@ const MacWindow = (props) => {
       height: "100%",
       width: "100%",
       x: 0,
-      y: 0
+      y: 0,
+      zIndex: currZIndex
     }
   }
 
@@ -70,17 +71,17 @@ const MacWindow = (props) => {
     y: Math.random() * (winHeight - initHeight - minMarginY)
   });
 
-  const minCallback = (transform) => {
-    setCurrZIndex(transform.zIndex);
-    setCurrTransform(transform.transform);
+  const minCallback = (style) => {
+    setCurrZIndex(style.zIndex);
+    setCurrTransform(style.transform);
     setIsMinimised(prevIsMinimised => !prevIsMinimised);
     setIsMaximised(false);
   };
 
-  const maxCallback = (transform) => {
-    setCurrZIndex(transform.zIndex);
+  const maxCallback = (style) => {
+    setCurrZIndex(style.zIndex);
     if(!isMaximised){
-      setCurrTransform(transform);
+      setCurrTransform(style.transform);
     }
     setIsMaximised(prevIsMaximised => !prevIsMaximised);
     setIsMinimised(false);
@@ -131,7 +132,7 @@ const MacWindow = (props) => {
               <TrafficLights
                 minCallback={() => windowRef.current && minCallback(windowRef.current.style)}
                 closeCallback={() => minCallback()}
-                maxCallback={() => windowRef.current && maxCallback(windowRef.current.style.transform)}
+                maxCallback={() => windowRef.current && maxCallback(windowRef.current.style)}
               />
               <span className={styles.title}>{props.title}</span>
               <div></div>

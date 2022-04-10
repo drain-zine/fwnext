@@ -12,7 +12,7 @@ const Drain00Tile = () => {
         <MacWindow 
             transformPosition={getRandomTransform()} 
             title={'Drain 00'}
-            maximiseComponent={<Drain00/>}
+            maximiseComponent={<Drain00 disableMatrix/>}
         >
             <section className={styles.tile}>
                 <main className={styles.tileBody}>
