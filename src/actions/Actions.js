@@ -52,3 +52,34 @@ export const setCMSError = (error) => {
     error
   });
 };
+
+
+// Nav
+export const setHomeIsOpen = (isOpen) => ({
+  type: t.SET_HOME_ISOPEN,
+  isOpen
+});
+
+export const setHomeTransform = (transform) => ({
+  type: t.SET_HOME_TRANSFORM,
+  transform
+});
+
+export const setWebampIsOpen = (isOpen) => ({
+  type: t.SET_WEBAMP_ISOPEN,
+  isOpen
+});
+
+export const setWebampTransform = (transform) => ({
+  type: t.SET_WEBAMP_TRANSFORM,
+  transform
+});
+
+export const fetchPagesForNav = () => ({
+  type: t.FETCH_PAGES_FOR_NAV
+});
+
+export const setPagesForNav = (pages) => ({
+  type: t.SET_PAGES_FOR_NAV,
+  pages
+});

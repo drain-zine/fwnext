@@ -1,0 +1,22 @@
+.imagePane{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    cursor: pointer;
+
+    img{
+        border-width: 1px;
+        border-radius: 0.5rem;
+    }
+
+    p{
+        margin: 0;
+        font-size: 0.75rem;
+    }
+
+    &:hover{
+        color: purple;
+    }
+}

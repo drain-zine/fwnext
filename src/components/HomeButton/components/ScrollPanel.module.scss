@@ -1,0 +1,183 @@
+@font-face {
+    font-family: 'Halo';
+    src: URL('../../../fonts/Halo.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Barbarian';
+    src: URL('../../../fonts/Barbarian.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cloister';
+    src: URL('../../../fonts/CloisterBlack.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'GODOFWAR';
+    src: URL('../../../fonts/GODOFWAR.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'VampireWars';
+    src: URL('../../../fonts/VampireWars.ttf') format('truetype');
+}
+
+.halo{
+    font-family: 'Halo';
+}
+
+.barbarian{
+    font-family: 'Barbarian';
+}
+
+.cloister{
+    font-family: 'Cloister';
+}
+
+.god{
+    font-family: 'GODOFWAR';
+}
+
+.vampire{
+    font-family: 'VampireWars';
+}
+
+
+
+
+.scrollWrapper{
+    height: 100%;
+    height: 100%;
+    // background-color: #303030;
+    // color: white;
+    color: black;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.scrollWrapper::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+.scrollWrapper::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+.navWrapper{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    overflow: hidden;
+    height: 600px;
+    position: relative;
+
+    .item{
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+
+        .subItem{
+            margin-bottom: 0.9rem;
+            font-size: 1rem;
+            cursor: pointer;
+            p{
+                margin: 0;
+            }
+        }
+
+        // .subItem:hover{
+        //     background-image: 
+        // }
+    
+        p:hover{
+            color: purple;
+        }
+    }
+}
+
+$bannerHeight: 52px;
+
+.topBanner{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-image: url('./assets/topBorder.gif');
+    background-repeat: repeat;
+    width: 100%;
+    height: $bannerHeight;
+}
+
+
+.bottomBanner{
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    background-image: url('./assets/bottomBorder.gif');
+    background-repeat: repeat;
+    width: 100%;
+    height: $bannerHeight;
+}
+
+.leftBanner{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    background-image: url('./assets/leftBorder.gif');
+    background-repeat: repeat;
+    width: $bannerHeight;
+    height: 100%;
+}
+
+.rightBanner{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    background-image: url('./assets/rightBorder.gif');
+    background-repeat: repeat;
+    width: $bannerHeight;
+    height: 100%;
+}
+
+.closed{
+    *{
+        height: 0;
+    }
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 0%;
+
+    p{
+        font-family: 'Cloister';
+        font-size: 1.75rem;
+    }
+
+    
+    .torch {
+        position: relative;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+
+
+.footer{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-top: 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}

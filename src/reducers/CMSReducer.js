@@ -1,6 +1,6 @@
 import * as t from "../actions/ActionTypes";
 
-const cms = (state = {cms: {"test":"hello"}}, action) => {
+const cms = (state = {}, action) => {
   switch(action.type){
     case t.FETCH_CMS_ENDPOINTS:
       return { 

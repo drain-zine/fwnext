@@ -9,12 +9,14 @@ import gnome from './assets/gnome.png'
 import banner from './assets/banner.png'
 import HomeButton from '../../../components/HomeButton/HomeButton';
 
-const Drain00 = () => {
+const Drain00 = (props) => {
+    const disableMatrix = props.disableMatrix || false;
     const canvasx = 1000;
     const canvasy = 1300;
 
     const rightText = useRef();
     const bottomText = useRef();
+    const iframeRef = useRef();
 
     // Append rainbow
     useEffect(() => {
@@ -47,87 +49,88 @@ const Drain00 = () => {
     }, [rightText, bottomText]);
 
     useEffect(() => {
-        var canvas = document.body.appendChild( document.createElement( 'canvas' ) ),
-        context = canvas.getContext( '2d' );
-        context.globalCompositeOperation = 'lighter';
-        canvas.width = canvasx;
-        canvas.height = canvasy;
-        canvas.classList.add(styles.matrix);
-        draw();
-
-        var textStrip = ['d', 'o', 'w', 'n', 't', 'h', 'e', 'd', 'r', 'a', 'i', 'n'];
-
-        var stripCount = 60, stripX = new Array(), stripY = new Array(), dY = new Array(), stripFontSize = new Array();
-
-        for (var i = 0; i < stripCount; i++) {
-            stripX[i] = Math.floor(Math.random()*1265);
-            stripY[i] = -100;
-            dY[i] = Math.floor(Math.random()*7)+3;
-            stripFontSize[i] = Math.floor(Math.random()*16)+8;
-        }
-
-        var theColors = ['#cefbe4', '#81ec72', '#5cd646', '#54d13c', '#4ccc32', '#43c728'];
-
-        var elem, context, timer;
-
-        function drawStrip(x, y) {
-            for (var k = 0; k <= 20; k++) {
-                var randChar = textStrip[Math.floor(Math.random()*textStrip.length)];
-                if (context.fillText) {
-                    switch (k) {
-                    case 0:
-                        context.fillStyle = theColors[0]; break;
-                    case 1:
-                        context.fillStyle = theColors[1]; break;
-                    case 3:
-                        context.fillStyle = theColors[2]; break;
-                    case 7:
-                        context.fillStyle = theColors[3]; break;
-                    case 13:
-                        context.fillStyle = theColors[4]; break;
-                    case 17:
-                        context.fillStyle = theColors[5]; break;
+        if(!disableMatrix){
+            var canvas = document.body.firstChild.appendChild( document.createElement( 'canvas' ) ),
+            context = canvas.getContext( '2d' );
+            context.globalCompositeOperation = 'lighter';
+            canvas.width = canvasx;
+            canvas.height = canvasy;
+            canvas.classList.add(styles.matrix);
+            draw();
+    
+            var textStrip = ['d', 'o', 'w', 'n', 't', 'h', 'e', 'd', 'r', 'a', 'i', 'n'];
+    
+            var stripCount = 60, stripX = new Array(), stripY = new Array(), dY = new Array(), stripFontSize = new Array();
+    
+            for (var i = 0; i < stripCount; i++) {
+                stripX[i] = Math.floor(Math.random()*1265);
+                stripY[i] = -100;
+                dY[i] = Math.floor(Math.random()*7)+3;
+                stripFontSize[i] = Math.floor(Math.random()*16)+8;
+            }
+    
+            var theColors = ['#cefbe4', '#81ec72', '#5cd646', '#54d13c', '#4ccc32', '#43c728'];
+    
+            var elem, context, timer;
+    
+            function drawStrip(x, y) {
+                for (var k = 0; k <= 20; k++) {
+                    var randChar = textStrip[Math.floor(Math.random()*textStrip.length)];
+                    if (context.fillText) {
+                        switch (k) {
+                        case 0:
+                            context.fillStyle = theColors[0]; break;
+                        case 1:
+                            context.fillStyle = theColors[1]; break;
+                        case 3:
+                            context.fillStyle = theColors[2]; break;
+                        case 7:
+                            context.fillStyle = theColors[3]; break;
+                        case 13:
+                            context.fillStyle = theColors[4]; break;
+                        case 17:
+                            context.fillStyle = theColors[5]; break;
+                        }
+                        context.fillText(randChar, x, y);
                     }
-                    context.fillText(randChar, x, y);
+                    y -= stripFontSize[k];
                 }
-                y -= stripFontSize[k];
             }
-        }
-
-        function draw() {
-            // clear the canvas and set the properties
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.shadowOffsetX = context.shadowOffsetY = 0;
-            context.shadowBlur = 8;
-            context.shadowColor = '#94f475';
-            
-            for (var j = 0; j < stripCount; j++) {
-                context.font = stripFontSize[j]+'px MatrixCode';
-                context.textBaseline = 'top';
-                context.textAlign = 'center';
+    
+            function draw() {
+                // clear the canvas and set the properties
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.shadowOffsetX = context.shadowOffsetY = 0;
+                context.shadowBlur = 8;
+                context.shadowColor = '#94f475';
                 
-                if (stripY[j] > 1358) {
-                    stripX[j] = Math.floor(Math.random()*canvas.width);
-                    stripY[j] = -100;
-                    dY[j] = Math.floor(Math.random()*7)+3;
-                    stripFontSize[j] = Math.floor(Math.random()*16)+8;
-                    drawStrip(stripX[j], stripY[j]);
-                } else drawStrip(stripX[j], stripY[j]);
-                
-                stripY[j] += dY[j];
+                for (var j = 0; j < stripCount; j++) {
+                    context.font = stripFontSize[j]+'px MatrixCode';
+                    context.textBaseline = 'top';
+                    context.textAlign = 'center';
+                    
+                    if (stripY[j] > 1358) {
+                        stripX[j] = Math.floor(Math.random()*canvas.width);
+                        stripY[j] = -100;
+                        dY[j] = Math.floor(Math.random()*7)+3;
+                        stripFontSize[j] = Math.floor(Math.random()*16)+8;
+                        drawStrip(stripX[j], stripY[j]);
+                    } else drawStrip(stripX[j], stripY[j]);
+                    
+                    stripY[j] += dY[j];
+                }
+            setTimeout(draw, 70);
             }
-        setTimeout(draw, 70);
+    
+            return () => {
+                document.getElementsByTagName('canvas')[0].remove();
+            };
         }
-
-        return () => {
-            document.getElementsByTagName('canvas')[0].remove();
-        };
     }, []);
 
     return(
-        <main>
+        <main className={styles.page}>
             <section className={styles.mainBackground}>
-                <HomeButton className={styles.homeButton}/>
                 <div className={styles.banner}>
                     <Image src={banner}/>
                 </div>
@@ -136,7 +139,7 @@ const Drain00 = () => {
                         <Image src={possibilty} />  
                     </div>
 
-                    <div style = {{"z-index": "0"}} className={classnames(styles.centerContainer, styles.gnomehand)}>
+                    <div style = {{"zIndex": "0"}} className={classnames(styles.centerContainer, styles.gnomehand)}>
                         <Image src={gnomehand} />  
                     </div>
                 </section>
@@ -178,7 +181,7 @@ const Drain00 = () => {
             </section>
             <div className={styles.divider}></div>
             <section className={styles.drain01}>
-                <iframe className={styles.drainIframe} src="https://zen-kowalevski-bab42e.netlify.app/overworld.html">
+                <iframe ref={iframeRef} className={styles.drainIframe} src="https://zen-kowalevski-bab42e.netlify.app/overworld.html">
 
                 </iframe>
             </section>

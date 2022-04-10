@@ -20,8 +20,9 @@ $baseFontSize: 16px;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    z-index: 0;
     overflow: hidden;
+    z-index: 1;
+    user-select: none;
 }
 
 .logo{

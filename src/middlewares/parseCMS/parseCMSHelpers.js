@@ -21,7 +21,7 @@ const manifest = {
     post: FadeInDiv
 };
 
-const parseView = (element, index) => {
+const parseView = (title, element, index) => {
 
     // catch either terminating children to send as child props or whitespace as null
     if (element.tagName === undefined) {
@@ -42,7 +42,7 @@ const parseView = (element, index) => {
         let reactChildren = [];
         if (element.childNodes) {
             for(let i = 0; i < element.childNodes.length; i++){
-                reactChildren.push(parseView(element.childNodes[i], i));
+                reactChildren.push(parseView(title, element.childNodes[i], i));
             }
         }
         
@@ -53,8 +53,7 @@ const parseView = (element, index) => {
 
         // set post ID
         if(element.tagName === "post"){
-            let post_id = element.getElementsByTagName("title")[0].textContent;
-            props = {id: post_id.replace(/[\n\s\"]+/g,""), className: styles.post}; 
+            props = {id: title, className: styles.post}; 
           
         } 
         

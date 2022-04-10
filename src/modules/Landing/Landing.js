@@ -1,18 +1,20 @@
 import React from 'react';
 import styles from './Landing.module.scss';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import profilePic from './assets/FWLogo.png';
-import LinkTile from '../LinkTile/LinkTile';
-import LinkTileImage from '../LinkTile/LinkTileImage';
-const WebampCS = dynamic(()=> import("../../components/WebampWrapper/WebampWrapper"), { ssr: false });
+import Drain00Tile from '../LinkTile/Drain00';
+import BlogTile from '../LinkTile/Blog';
+import CartiTile from '../LinkTile/Carti';
+import EccoTile from '../LinkTile/Ecco';
   
 const Landing = () => {
 
   return (
     <main className={styles.page}>
-        <LinkTile />
-        <LinkTileImage />
+        <Drain00Tile />
+        <BlogTile />
+        <CartiTile />
+        <EccoTile />
         <div className={styles.logo}>
           <Image 
             src={profilePic}
@@ -20,7 +22,6 @@ const Landing = () => {
             height={750}
           />
         </div>
-        {/* <WebampCS /> */}
     </main>
   );
 };
